@@ -1,0 +1,12 @@
+<script>
+    function imageLoaded(img) {
+      const wrapper = img.parentElement;
+      const loader = wrapper.querySelector(".loader");
+     
+      // Hide the loader
+      loader.style.display = "none";
+  
+      // Show the image
+      img.classList.remove("hidden");
+    }
+  </script>

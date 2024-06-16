@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+    <link rel="stylesheet" href="/stylesheets/team.css" />
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+
+  </head>
+
+  <body class="font-[Poppins] bg-white">
+    <%- include('./common/imageLoaderScript') %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script src="https://unpkg.com/taos@1.0.5/dist/taos.js"></script>
+    <%- include('./common/nav')%>
+
+    <section class="bg-white dark:bg-gray-100">
+      <div
+        class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6"
+      >
+        <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
+          <div
+            class="delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
+            data-taos-offset="300"
+          >
+            <div
+              class="duration-[1000ms] [animation-iteration-count:infinite] taos:opacity-0"
+            >
+              <h2
+                class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-black"
+              >
+                Our Team
+              </h2>
+              <p
+                class="mb-20 font-light text-gray-500 sm:text-xl dark:text-gray-800"
+              >
+                Building Bridges and Strengthening Bonds: Enhancing Alumni
+                Collaboration Through Teamwork and Engagement
+              </p>
+            </div>
+          </div>
+
+          <!-- Displaying VP -->
+          <div class="flex items-center justify-center mt-6 mb-16">
+            <div class="w-48 h-0.5 bg-gray-500"></div>
+            <h2 class="text-black text-2xl font-bold mx-4">VICE PRESIDENT</h2>
+            <div class="w-48 h-0.5 bg-gray-500"></div>
+          </div>
+                    
+          <% const president = TeamMembers.find(member => member.position ===
+          'Vice President'); %> <% if(president){ %>
+          <%-include('./common/profileTeamMember',{...president}) %> <%}%>
+        </div>
+
+        <div class="flex items-center justify-center mb-4">
+          <h2 class="text-black text-2xl font-bold mx-4">OVERALL COORDINATOR</h2>
+        </div>
+        <div class="container mx-auto p-8">
+          <div class="flex flex-wrap align-middle justify-center -mx-4">
+            <!-- Do not move to next line. It might throw error -->
+            <% TeamMembers.filter(member => member.position === 'Overall Coordinators').forEach((member, index) => { %>
+            <%-include('./common/profileTeamMember', {...member}) %> <% }); %>
+          </div>
+        </div>
+
+
+        <div class="flex items-center justify-center mt-6 mb-16">
+          <div class="w-48 h-0.5 bg-gray-500"></div>
+          <h2 class="text-black text-2xl font-bold mx-4">COORDINATORS</h2>
+          <div class="w-48 h-0.5 bg-gray-500"></div>
+        </div>
+        <div class="container mx-auto p-8">
+        <!-- Displaying coordinators -->
+        <div
+          class="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+        >
+          <% TeamMembers.filter(member => member.position !== 'Overall Coordinators' && member.position !== 'Vice President' && member.position !== 'President' && member.position !== 'Team Members').forEach(function(member) { %>
+          <%-include('./common/profileTeamMember', {...member}) %> 
+          <% }) %>
+        </div>
+        </div>
+
+        <!-- Displaying core members -->
+        <div class="container mx-auto p-8">
+          <div class="flex items-center justify-center mb-16">
+            <div class="w-56 h-0.5 bg-gray-500"></div>
+            <h2 class="text-black text-2xl font-bold mx-4">CORE MEMBERS</h2>
+            <div class="w-56 h-0.5 bg-gray-500"></div>
+          </div>
+        <div
+          class="grid gap-8 lg:gap-16 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 last:justify-self-center"
+        >
+          <% TeamMembers.filter(member => member.position === 'Team Members').forEach(function(member) { %>
+          <%-include('./common/profileTeamMember', {...member}) %> 
+          <% }) %>
+        </div>
+      </div>
+    </section>
+
+    <%- include('./common/footer')%>
+
+    <script src="https://unpkg.com/taos@1.0.5/dist/taos.js"></script>
+  </body>
+</html>
